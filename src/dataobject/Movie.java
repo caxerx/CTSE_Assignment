@@ -1,3 +1,5 @@
+package dataobject;
+
 public class Movie extends DVD {
     private String director;
 
@@ -12,12 +14,5 @@ public class Movie extends DVD {
 
     public void setDirector(String director) {
         this.director = director;
-    }
-
-    @Override
-    public String toString() {
-        return "Movie{" +
-                "director='" + director + '\'' +
-                '}';
     }
 }

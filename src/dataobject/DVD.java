@@ -1,3 +1,5 @@
+package dataobject;
+
 public class DVD {
     private int dvdId;
     private String title;
@@ -27,13 +29,7 @@ public class DVD {
         return numAvailable;
     }
 
-    @Override
-    public String toString() {
-        return "DVD{" +
-                "dvdId=" + dvdId +
-                ", title='" + title + '\'' +
-                ", length=" + length +
-                ", numAvailable=" + numAvailable +
-                '}';
+    public void setNumAvailable(int numAvailable) {
+        this.numAvailable = numAvailable;
     }
 }
