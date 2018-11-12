@@ -1,5 +1,5 @@
 package memento;
 
-public interface Memento {
+public interface DVDMemento {
     void restore();
 }

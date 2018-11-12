@@ -32,4 +32,20 @@ public class DVD {
     public void setNumAvailable(int numAvailable) {
         this.numAvailable = numAvailable;
     }
+
+
+    public String toListString() {
+        //"ID  Title    Length (mins)   No. available   Other Info"
+        return String.format("%s\t%s\t%s\t%s", dvdId, title, length, numAvailable);
+    }
+
+    @Override
+    public String toString() {
+        return "DVD{" +
+                "dvdId=" + dvdId +
+                ", title='" + title + '\'' +
+                ", length=" + length +
+                ", numAvailable=" + numAvailable +
+                '}';
+    }
 }
