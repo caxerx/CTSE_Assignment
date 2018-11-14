@@ -15,6 +15,7 @@ public class Assignment {
         CommandHandler commandHandler = new CommandHandler(stateManager);
         commandHandler.registerCommand("c", new CreateItemCommandFactory(dvdList, sc));
         commandHandler.registerCommand("s", new ShowItemCommandFactory(dvdList, sc));
+        commandHandler.registerCommand("a", new AcceptDonationCommandFactory(sc, dvdList, stateManager));
         commandHandler.registerCommand("r", new RedoCommandFactory(stateManager));
         commandHandler.registerCommand("u", new UndoCommandFactory(stateManager));
         commandHandler.registerCommand("x", new ExitCommandFactory());

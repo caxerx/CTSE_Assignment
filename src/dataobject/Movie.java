@@ -23,4 +23,9 @@ public class Movie extends DVD {
     public DVDMemento backup() {
         return new MovieMemento(this);
     }
+
+    @Override
+    public String toListString() {
+        return super.toListString() + director;
+    }
 }

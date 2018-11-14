@@ -1,5 +1,6 @@
 package dataobject;
 
+import def.StringUtils;
 import memento.DVDMemento;
 
 public class DVD {
@@ -38,7 +39,7 @@ public class DVD {
 
     public String toListString() {
         //"ID  Title    Length (mins)   No. available   Other Info"
-        return String.format("%s\t%s\t%s\t%s", dvdId, title, length, numAvailable);
+        return StringUtils.padLeft(dvdId + "", 4) + StringUtils.padLeft(title, 9) + StringUtils.padLeft(StringUtils.center(length + "", 13), 16) + StringUtils.padLeft(StringUtils.center(numAvailable + "", 13), 16);
     }
 
     public DVDMemento backup() {

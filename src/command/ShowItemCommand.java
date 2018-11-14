@@ -19,8 +19,8 @@ public class ShowItemCommand extends Command {
         System.out.println("Enter ID (a to show all): ");
         String id = scanner.nextLine();
         if (id.equalsIgnoreCase("a")) {
+            System.out.println("ID  Title    Length (mins)   No. available   Other Info");
             dvdList.forEach(i -> {
-                System.out.println("ID  Title    Length (mins)   No. available   Other Info");
                 System.out.println(i.toListString());
             });
             return;

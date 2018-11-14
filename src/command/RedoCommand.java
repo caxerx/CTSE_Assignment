@@ -16,6 +16,7 @@ public class RedoCommand extends Command {
         Stack<UndoableCommand> redoList = stateManager.getRedoList();
         if (redoList.isEmpty()) {
             System.out.println("Nothing to redo");
+            return;
         }
         UndoableCommand command = redoList.pop();
         stateManager.getUndoList().push(command);

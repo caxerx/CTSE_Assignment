@@ -15,4 +15,9 @@ public class MV extends DVD {
     public void setSinger(String singer) {
         this.singer = singer;
     }
+
+    @Override
+    public String toListString() {
+        return super.toListString() + singer;
+    }
 }
