@@ -1,9 +1,7 @@
 package def;
 
 import dataobject.DVD;
-import factory.cmd.CreateItemCommandFactory;
-import factory.cmd.ExitCommandFactory;
-import factory.cmd.ShowItemCommandFactory;
+import factory.cmd.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,9 +11,12 @@ public class Assignment {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         List<DVD> dvdList = new ArrayList<DVD>();
-        CommandHandler commandHandler = new CommandHandler();
+        StateManager stateManager = new StateManager();
+        CommandHandler commandHandler = new CommandHandler(stateManager);
         commandHandler.registerCommand("c", new CreateItemCommandFactory(dvdList, sc));
         commandHandler.registerCommand("s", new ShowItemCommandFactory(dvdList, sc));
+        commandHandler.registerCommand("r", new RedoCommandFactory(stateManager));
+        commandHandler.registerCommand("u", new UndoCommandFactory(stateManager));
         commandHandler.registerCommand("x", new ExitCommandFactory());
         while (true) {
             System.out.println("DVD Record System");
@@ -26,6 +27,5 @@ public class Assignment {
                 System.out.println("No such command");
             }
         }
-
     }
 }

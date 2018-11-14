@@ -5,7 +5,7 @@ import dataobject.DVD;
 import java.util.List;
 import java.util.Scanner;
 
-public class ShowItemCommand implements Command {
+public class ShowItemCommand extends Command {
     private List<DVD> dvdList;
     private Scanner scanner;
 

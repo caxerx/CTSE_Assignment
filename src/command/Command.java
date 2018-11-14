@@ -1,8 +1,8 @@
 package command;
 
-public interface Command {
-    /**
-     * Execute the action of the command
-     */
-    void execute();
+public abstract class Command implements CommandInterface {
+    @Override
+    public boolean isUndoCommand() {
+        return false;
+    }
 }

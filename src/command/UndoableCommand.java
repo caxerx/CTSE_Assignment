@@ -3,14 +3,19 @@ package command;
 /**
  * A command that able to undo and redo
  */
-public interface UndoableCommand extends Command {
+public abstract class UndoableCommand extends Command {
+    @Override
+    public boolean isUndoCommand() {
+        return true;
+    }
+
     /**
      * Redo the action after undo
      */
-    void redo();
+    abstract void redo();
 
     /**
      * Undo the action
      */
-    void undo();
+    abstract void undo();
 }

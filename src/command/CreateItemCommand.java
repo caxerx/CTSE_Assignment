@@ -3,7 +3,6 @@ package command;
 import dataobject.DVD;
 import dataobject.MV;
 import dataobject.Movie;
-import def.StateManager;
 import factory.dvd.DVDFactory;
 import factory.dvd.MVFactory;
 import factory.dvd.MovieFactory;
@@ -11,7 +10,7 @@ import factory.dvd.MovieFactory;
 import java.util.List;
 import java.util.Scanner;
 
-public class CreateItemCommand implements UndoableCommand {
+public class CreateItemCommand extends UndoableCommand {
     private List<DVD> dvdList;
     private Scanner scanner;
     private DVD item;
@@ -24,7 +23,6 @@ public class CreateItemCommand implements UndoableCommand {
     @Override
     public void redo() {
         dvdList.add(item);
-
     }
 
     @Override
@@ -53,7 +51,7 @@ public class CreateItemCommand implements UndoableCommand {
         }
         System.out.println("Enter id, title, length, number of available copies, " + extra + ":");
         String parameter = scanner.nextLine();
-        String[] parameters = parameter.split(", ");
+        String[] parameters = parameter.split(",");
 
         if (parameters.length != 5) {
             System.out.println("Invalid parameter length");
@@ -64,20 +62,20 @@ public class CreateItemCommand implements UndoableCommand {
         int dvdId = 0;
         int length = 0;
         try {
-            dvdId = Integer.parseInt(parameters[0]);
-            length = Integer.parseInt(parameters[2]);
-            numAvailable = Integer.parseInt(parameters[3]);
+            dvdId = Integer.parseInt(parameters[0].trim());
+            length = Integer.parseInt(parameters[2].trim());
+            numAvailable = Integer.parseInt(parameters[3].trim());
         } catch (NumberFormatException e) {
             System.out.println("Invalid parameter: \"dvd id\", \"length\" and \"number of avaliable copies\" should be integer");
             return;
         }
-        item = factory.createDVD(dvdId, parameters[1], length, numAvailable);
+        item = factory.createDVD(dvdId, parameters[1].trim(), length, numAvailable);
         switch (type) {
             case "mo":
-                ((Movie) item).setDirector(parameters[4]);
+                ((Movie) item).setDirector(parameters[4].trim());
                 break;
             case "mv":
-                ((MV) item).setSinger(parameters[4]);
+                ((MV) item).setSinger(parameters[4].trim());
                 break;
         }
         dvdList.add(item);

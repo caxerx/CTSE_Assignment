@@ -1,5 +1,8 @@
 package dataobject;
 
+import memento.DVDMemento;
+import memento.MovieMemento;
+
 public class Movie extends DVD {
     private String director;
 
@@ -14,5 +17,10 @@ public class Movie extends DVD {
 
     public void setDirector(String director) {
         this.director = director;
+    }
+
+    @Override
+    public DVDMemento backup() {
+        return new MovieMemento(this);
     }
 }

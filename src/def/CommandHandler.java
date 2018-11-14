@@ -37,7 +37,7 @@ public class CommandHandler {
         }
         Command command = commandFactory.createCommand();
         command.execute();
-        if (command instanceof UndoableCommand) {
+        if (command.isUndoCommand()) {
             stateManager.getUndoList().add((UndoableCommand) command);
         }
         return true;
