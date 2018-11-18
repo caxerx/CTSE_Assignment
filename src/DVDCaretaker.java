@@ -1,5 +1,3 @@
-package memento;
-
 import java.util.Stack;
 
 public class DVDCaretaker {

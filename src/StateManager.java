@@ -1,8 +1,3 @@
-package def;
-
-import command.UndoableCommand;
-import memento.DVDCaretaker;
-
 import java.util.Stack;
 
 public class StateManager {

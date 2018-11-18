@@ -1,8 +1,3 @@
-package dataobject;
-
-import def.StringUtils;
-import memento.DVDMemento;
-
 public class DVD {
     private int dvdId;
     private String title;
@@ -38,8 +33,7 @@ public class DVD {
 
 
     public String toListString() {
-        //"ID  Title    Length (mins)   No. available   Other Info"
-        return StringUtils.padLeft(dvdId + "", 4) + StringUtils.padLeft(title, 9) + StringUtils.padLeft(StringUtils.center(length + "", 13), 16) + StringUtils.padLeft(StringUtils.center(numAvailable + "", 13), 16);
+        return StringUtils.padLeft(getDvdId() + "", 8) + StringUtils.padLeft(getTitle(), 20) + StringUtils.padLeft(getLength() + "", 14) + StringUtils.padLeft(getNumAvailable() + "", 14);
     }
 
     public DVDMemento backup() {
@@ -49,11 +43,9 @@ public class DVD {
 
     @Override
     public String toString() {
-        return "DVD{" +
-                "dvdId=" + dvdId +
-                ", title='" + title + '\'' +
-                ", length=" + length +
-                ", numAvailable=" + numAvailable +
-                '}';
+        return "ID: " + dvdId + "\n" +
+                "Title: " + title + "\n" +
+                "Length: " + length + " mins\n" +
+                "Number of available copies: " + numAvailable;
     }
 }

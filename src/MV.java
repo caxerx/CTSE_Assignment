@@ -1,5 +1,3 @@
-package dataobject;
-
 public class MV extends DVD {
     private String singer;
 
@@ -17,7 +15,16 @@ public class MV extends DVD {
     }
 
     @Override
+    public String toString() {
+        return super.toString() + "\nSinger: " + singer;
+    }
+
+    @Override
     public String toListString() {
         return super.toListString() + singer;
+    }
+
+    public DVDMemento backup() {
+        return new MVMemento(this);
     }
 }
