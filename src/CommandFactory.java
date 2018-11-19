@@ -2,7 +2,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public interface CommandFactory {
-    Command createCommand();
+    CommandInterface createCommand();
 
 
     /**
@@ -23,7 +23,7 @@ class CreateItemCommandFactory implements CommandFactory {
     }
 
     @Override
-    public Command createCommand() {
+    public CommandInterface createCommand() {
         return new CreateItemCommand(dvdList, sc);
     }
 
@@ -93,7 +93,7 @@ class LendCommandFactory implements CommandFactory {
     }
 
     @Override
-    public Command createCommand() {
+    public CommandInterface createCommand() {
         return new LendCommand(sc, dvdList, stateManager);
     }
 
@@ -115,7 +115,7 @@ class ReturnCommandFactory implements CommandFactory {
     }
 
     @Override
-    public Command createCommand() {
+    public CommandInterface createCommand() {
         return new ReturnCommand(sc, dvdList, stateManager);
     }
 
@@ -175,7 +175,7 @@ class AcceptDonationCommandFactory implements CommandFactory {
     }
 
     @Override
-    public Command createCommand() {
+    public CommandInterface createCommand() {
         return new AcceptDonationCommand(sc, dvdList, stateManager);
     }
 

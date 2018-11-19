@@ -4,7 +4,7 @@ import java.util.Stack;
 
 public abstract class Command implements CommandInterface {
     @Override
-    public boolean isUndoCommand() {
+    public final boolean isUndoCommand() {
         return false;
     }
 }
@@ -21,9 +21,9 @@ interface CommandInterface {
 /**
  * A command that able to undo and redo
  */
-abstract class UndoableCommand extends Command {
+abstract class UndoableCommand implements CommandInterface {
     @Override
-    public boolean isUndoCommand() {
+    public final boolean isUndoCommand() {
         return true;
     }
 

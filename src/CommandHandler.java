@@ -30,7 +30,7 @@ public class CommandHandler {
         if (commandFactory == null) {
             return false;
         }
-        Command command = commandFactory.createCommand();
+        CommandInterface command = commandFactory.createCommand();
         boolean success = command.execute();
         if (command.isUndoCommand() && success) {
             stateManager.getUndoList().add((UndoableCommand) command);
