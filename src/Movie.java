@@ -1,8 +1,3 @@
-package dataobject;
-
-import memento.DVDMemento;
-import memento.MovieMemento;
-
 public class Movie extends DVD {
     private String director;
 
@@ -27,5 +22,10 @@ public class Movie extends DVD {
     @Override
     public String toListString() {
         return super.toListString() + director;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "\nDirector: " + director;
     }
 }

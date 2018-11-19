@@ -1,9 +1,3 @@
-package def;
-
-import command.Command;
-import command.UndoableCommand;
-import factory.cmd.CommandFactory;
-
 import java.util.LinkedHashMap;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -26,7 +20,8 @@ public class CommandHandler {
         System.out.print("Please enter command: [");
         System.out.print(String.join(" | ", commands));
         System.out.println("]");
-        String descriptions = commands.stream().map(command -> command + " = " + commandFactoryMap.get(command).getName()).collect(Collectors.joining(", "));
+
+        String descriptions = commands.stream().map(command -> command + " = " + commandFactoryMap.get(command).getName()).collect(Collectors.joining(""));
         System.out.println(descriptions);
     }
 
@@ -36,9 +31,10 @@ public class CommandHandler {
             return false;
         }
         Command command = commandFactory.createCommand();
-        command.execute();
-        if (command.isUndoCommand()) {
+        boolean success = command.execute();
+        if (command.isUndoCommand() && success) {
             stateManager.getUndoList().add((UndoableCommand) command);
+            stateManager.getRedoList().clear();
         }
         return true;
     }
