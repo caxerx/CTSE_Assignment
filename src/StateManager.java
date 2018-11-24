@@ -1,5 +1,8 @@
 import java.util.Stack;
 
+/**
+ * Wrap the state object such as redo list, undo list and caretaker
+ */
 public class StateManager {
     private DVDCaretaker dvdCaretaker;
     private Stack<UndoableCommand> undoList;

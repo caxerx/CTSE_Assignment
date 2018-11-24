@@ -32,10 +32,20 @@ public class DVD {
     }
 
 
+    /**
+     * The display format of showing the all item list
+     *
+     * @return display format of show all item list
+     */
     public String toListString() {
         return String.format("%1$-8s%2$-20s%3$-14s%4$-14s", getDvdId(), getTitle(), getLength(), getNumAvailable());
     }
 
+    /**
+     * Backup the dvd and return the memento object
+     *
+     * @return memento of dvd object
+     */
     public DVDMemento backup() {
         return null;
     }

@@ -1,7 +1,12 @@
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * The command factory, to create commands and display the command instruction
+ */
 public interface CommandFactory {
+
+
     CommandInterface createCommand();
 
 
@@ -35,7 +40,7 @@ class CreateItemCommandFactory implements CommandFactory {
 
 class ExitCommandFactory implements CommandFactory {
     @Override
-    public Command createCommand() {
+    public CommandInterface createCommand() {
         return new ExitCommand();
     }
 
@@ -53,7 +58,7 @@ class UndoRedoListCommandFactory implements CommandFactory {
     }
 
     @Override
-    public Command createCommand() {
+    public CommandInterface createCommand() {
         return new UndoRedoListCommand(stateManager);
     }
 
@@ -71,7 +76,7 @@ class UndoCommandFactory implements CommandFactory {
     }
 
     @Override
-    public Command createCommand() {
+    public CommandInterface createCommand() {
         return new UndoCommand(stateManager);
     }
 
@@ -133,7 +138,7 @@ class RedoCommandFactory implements CommandFactory {
     }
 
     @Override
-    public Command createCommand() {
+    public CommandInterface createCommand() {
         return new RedoCommand(stateManager);
     }
 
@@ -153,7 +158,7 @@ class ShowItemCommandFactory implements CommandFactory {
     }
 
     @Override
-    public Command createCommand() {
+    public CommandInterface createCommand() {
         return new ShowItemCommand(dvdList, sc);
     }
 

@@ -1,6 +1,17 @@
+/**
+ * The dvd memento, store and restore the state of dvd
+ */
 public interface DVDMemento {
+    /**
+     * Get the originator object in memento
+     *
+     * @return the originator
+     */
     DVD getOrigin();
 
+    /**
+     * restore the saved state to the originator
+     */
     void restore();
 }
 

@@ -1,7 +1,7 @@
 public class Movie extends DVD {
     private String director;
 
-    public Movie(int dvdId, String title, int length, int numAvailable, String director) {
+        public Movie(int dvdId, String title, int length, int numAvailable, String director) {
         super(dvdId, title, length, numAvailable);
         this.director = director;
     }

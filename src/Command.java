@@ -2,6 +2,9 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Stack;
 
+/**
+ * The command that unable to redo
+ */
 public abstract class Command implements CommandInterface {
     @Override
     public final boolean isUndoCommand() {
@@ -9,12 +12,23 @@ public abstract class Command implements CommandInterface {
     }
 }
 
+
+/**
+ * Interface of the command
+ */
 interface CommandInterface {
     /**
      * Execute the action of the command
+     *
+     * @return the command executed with no input error or exception
      */
     boolean execute();
 
+    /**
+     * To check whether the command is undoable
+     *
+     * @return the command can undo or not
+     */
     boolean isUndoCommand();
 }
 
@@ -30,14 +44,13 @@ abstract class UndoableCommand implements CommandInterface {
     /**
      * Redo the action after undo
      */
-    abstract void redo();
+    public abstract void redo();
 
     /**
      * Undo the action
      */
-    abstract void undo();
+    public abstract void undo();
 }
-
 
 class AcceptDonationCommand extends UndoableCommand {
     private Scanner sc;
@@ -86,12 +99,12 @@ class AcceptDonationCommand extends UndoableCommand {
     }
 
     @Override
-    void redo() {
+    public void redo() {
         stateManager.getDvdCaretaker().redo();
     }
 
     @Override
-    void undo() {
+    public void undo() {
         stateManager.getDvdCaretaker().undo();
     }
 
@@ -155,6 +168,14 @@ class CreateItemCommand extends UndoableCommand {
         int length = 0;
         try {
             dvdId = Integer.parseInt(parameters[0].trim());
+            final int finalDvdId = dvdId;
+            DVD targetDvd = dvdList.stream().filter(dvd -> dvd.getDvdId() == finalDvdId).findFirst().orElse(null);
+            if (targetDvd != null) {
+                System.out.println("DVD with id " + dvdId + " already exist");
+                System.out.println();
+                return false;
+            }
+
             length = Integer.parseInt(parameters[2].trim());
             numAvailable = Integer.parseInt(parameters[3].trim());
         } catch (NumberFormatException e) {
@@ -203,6 +224,7 @@ class LendCommand extends UndoableCommand {
             intId = Integer.parseInt(id);
         } catch (NumberFormatException e) {
             System.out.println("Invalid id, id can only be integer");
+            return false;
         }
         final int finalIntId = intId;
         dvd = dvdList.stream().filter(dvd -> dvd.getDvdId() == finalIntId).findFirst().orElse(null);
@@ -227,12 +249,12 @@ class LendCommand extends UndoableCommand {
     }
 
     @Override
-    void redo() {
+    public void redo() {
         stateManager.getDvdCaretaker().redo();
     }
 
     @Override
-    void undo() {
+    public void undo() {
         stateManager.getDvdCaretaker().undo();
     }
 
@@ -318,6 +340,7 @@ class ReturnCommand extends UndoableCommand {
             intId = Integer.parseInt(id);
         } catch (NumberFormatException e) {
             System.out.println("Invalid id, id can only be integer");
+            return false;
         }
         final int finalIntId = intId;
         dvd = dvdList.stream().filter(dvd -> dvd.getDvdId() == finalIntId).findFirst().orElse(null);
@@ -336,12 +359,12 @@ class ReturnCommand extends UndoableCommand {
     }
 
     @Override
-    void redo() {
+    public void redo() {
         stateManager.getDvdCaretaker().redo();
     }
 
     @Override
-    void undo() {
+    public void undo() {
         stateManager.getDvdCaretaker().undo();
     }
 
@@ -403,6 +426,7 @@ class ShowItemCommand extends Command {
             intID = Integer.parseInt(id);
         } catch (NumberFormatException e) {
             System.out.println("Please enter \"a\" or an integer id");
+            return false;
         }
         final int fId = intID;
         DVD rDvd = dvdList.stream().filter(dvd -> dvd.getDvdId() == fId).findFirst().orElse(null);
